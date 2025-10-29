@@ -2,7 +2,8 @@ let buttonElement = JSON.parse(localStorage.getItem('buttonElement'));
 
 function subscribe(){
       buttonElement = document.querySelector('.subscribe-bn');
-    if( buttonElement.innerHTML === 'Subscribe'){
+    if( buttonElement.innerHTML === 'Subscribe')
+      {
          buttonElement.innerHTML =  'Subscribed';
          buttonElement.classList.add('is-subscribed');
     }else {
@@ -11,8 +12,7 @@ function subscribe(){
     }
    localStorage.setItem('buttonElement', JSON.stringify(buttonElement));
 }
-
-
+ 
 document.title = 'DOM Project';
 
  function computerMove(){
@@ -20,23 +20,36 @@ document.title = 'DOM Project';
     let computerGuess = '';
     if(randomNumber >  0 && randomNumber <  1/3){
       computerGuess = 'rock';
-     
-      
+
     }else if (randomNumber >  1/3 && randomNumber <  2/3){
       computerGuess ='paper';
-     
-      
     }else if (randomNumber >  2/3 && randomNumber <  1){
        computerGuess ='scissors';
-      
     }
     return computerGuess;
  }
  
+
  let score = JSON.parse(localStorage.getItem('score')) || {
   wins : 0,
   losses : 0,
   ties : 0
+ }
+ let isAutoPlaying = false;
+  let intervalId;
+
+ function autoplay(){
+  if(!isAutoPlaying){
+    intervalId =  setInterval(function(){
+    const playerMove = computerMove();
+    playGame(playerMove);
+  }, 1000);
+      isAutoPlaying = true;
+  } else{
+    clearInterval(intervalId);
+    isAutoPlaying = false;
+  }
+ 
  }
      
  function playGame(playerMove){
@@ -73,13 +86,11 @@ document.title = 'DOM Project';
         losses : 0,
         ties : 0
         }
-
-        
+   
     document.querySelector('.js-score2').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
     document.querySelector('.js-score').innerHTML ='';
     document.querySelector('.js-score1').innerHTML ='';
         return;
-    
     }
 
     
@@ -102,7 +113,7 @@ document.title = 'DOM Project';
 
 
 
-  function orderCost( ){
+  function orderCost(){
     let cost = document.getElementById('Cost');
     finalCost = cost.value;
     let result =  (+finalCost + 10);
@@ -118,12 +129,10 @@ document.title = 'DOM Project';
     if(event.key === 'Enter'){
       orderCost( );
     }
-  
   }
 
   function old(){
      let display = document.getElementById('prac1');
        let display1 = document.querySelector('.prac');
-       
          display1.innerHTML = display.value;
   }

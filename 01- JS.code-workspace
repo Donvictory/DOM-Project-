@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../JS NEW"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "01- JS"
+	}
+}
