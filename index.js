@@ -38,19 +38,79 @@ document.title = 'DOM Project';
  let isAutoPlaying = false;
   let intervalId;
 
+  const autoplayButton = document.querySelector('.Auto-play-btn');
+  autoplayButton.addEventListener('click', () => {
+    autoplay();
+  });
+
  function autoplay(){
   if(!isAutoPlaying){
     intervalId =  setInterval(function(){
     const playerMove = computerMove();
     playGame(playerMove);
+    autoplayButton.textContent = 'Stop Playing';
   }, 1000);
       isAutoPlaying = true;
+      
   } else{
     clearInterval(intervalId);
     isAutoPlaying = false;
+    autoplayButton.textContent = 'Auto Play';
   }
  
  }
+
+ const resetButton = document.querySelector('.reset-btn');
+  resetButton.addEventListener('click', () => {
+    let div = document.querySelector('.div');
+    let Yes = document.createElement('button');
+    Yes.textContent = `Yes`;
+     
+    let No = document.createElement('button');
+    No.textContent = `No`;
+ 
+    
+    div.textContent = `Are you sure you want to reset the score?  `;
+    div.appendChild(Yes);
+    div.appendChild(No);
+
+    Yes.addEventListener('click', () => {
+        playGame('reset score');
+         div.textContent = '';
+      })
+    No.addEventListener('click', () => {
+        div.textContent = '';
+      });
+  })
+  const rockButton = document.getElementById('rock');
+  rockButton.addEventListener('click', () => {
+    playGame('rock');
+    });
+
+      const paperButton = document.getElementById('paper');
+  paperButton.addEventListener('click', () => {
+    playGame('paper');
+    });
+
+      const scissorsButton = document.getElementById('scissors');
+  scissorsButton.addEventListener('click',(event) => {
+    playGame('scissors');
+    
+    });
+
+    document.body.addEventListener('keydown', (event) => {
+      if(event.key === 'r'){
+        playGame('rock');
+      }else if(event.key === 'p'){
+        playGame('paper');
+      }else if(event.key === 's'){
+        playGame('scissors');
+      }else if(event.key === 'enter'){
+        playGame('reset score');
+      }else if(event.key === 'a'){
+        autoplay();
+      }
+      });
      
  function playGame(playerMove){
    const computerGuess = computerMove();
@@ -136,3 +196,21 @@ document.title = 'DOM Project';
        let display1 = document.querySelector('.prac');
          display1.innerHTML = display.value;
   }
+  
+  let num = [2, 4, 6, 8, 20];
+  let results = num
+  .filter((value )=>{
+    return value > 5;
+  })
+  .map((value )=>{
+    return value * 3;
+  });
+  console.log(results);
+
+ console.log( [2, 4, 6, 8, 20].filter(n => n > 5).map(n => n * 3) );
+
+
+ 
+ const muliply = (value1 , value2) => console.log(value1 * value2);
+ 
+ muliply(2 , 3);

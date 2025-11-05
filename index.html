@@ -35,6 +35,55 @@
 
     </p>
 
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>App</title>
+</head>
+<body style="font-family: sans-serif; text-align: center; margin-top: 100px;">
+  <h1>Messaging App</h1>
+  <p id="message-count">(0) New messages</p>
+  <button id="add">Add</button>
+  <button id="remove">Remove</button>
+
+  <script>
+    let messages = 0;
+    const messageDisplay = document.getElementById('message-count');
+    const addBtn = document.getElementById('add');
+    const removeBtn = document.getElementById('remove');
+
+    // Update the title every second
+    /*let showMessages = true;
+    setInterval(() => {
+      if (showMessages) {
+        document.title = `(${messages}) New messages`;
+      } else {
+        document.title = "App";
+      }
+      showMessages = !showMessages;
+    }, 1000);
+    */
+    // Update the displayed message count
+    function updateDisplay() {
+      messageDisplay.textContent = `(${messages}) New messages`;
+    }
+
+    // Add and Remove button functionality
+    addBtn.addEventListener('click', () => {
+      messages++;
+      updateDisplay();
+    });
+
+    removeBtn.addEventListener('click', () => {
+      if (messages > 0) messages--;
+      updateDisplay();
+    });
+  </script>
+</body>
+</html>
+
+
     <script src="index.js"></script>
 </body>
 </html>
