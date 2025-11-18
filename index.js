@@ -14,6 +14,8 @@ function subscribe() {
 
 document.title = "DOM Project";
 
+
+
 function computerMove() {
   let randomNumber = Math.random();
   let computerGuess = "";
@@ -53,6 +55,39 @@ function autoplay() {
     isAutoPlaying = false;
     autoplayButton.textContent = "Auto Play";
   }
+}
+
+const countdownDisplay = document.getElementById('countdown-display');
+let countdownValue = 4;
+
+function startCountdownInterval() {
+    countdownValue =4;
+    countdownDisplay.textContent = 'Rock!';
+      countdownDisplay.style.display = 'block';
+      countdownDisplay.style.fontSize = '48px';
+      countdownDisplay.style.fontWeight = 'bold';
+      countdownDisplay.style.textAlign = 'center';
+      countdownDisplay.style.margin = '20px auto';
+    const intervalId = setInterval(() => {
+        countdownValue--;
+        
+        if (countdownValue >= 0) {
+            if (countdownValue === 1) {
+                countdownDisplay.textContent = 'Shoot!';
+        }else if(countdownValue === 2){
+            countdownDisplay.textContent = 'Scissors!';
+        }else if(countdownValue === 3){
+            countdownDisplay.textContent = 'Paper!';
+        } 
+
+        if (countdownValue === 0) {
+            countdownDisplay.style.display = 'none';
+             document.querySelector('.con').style.opacity = `1`;
+   
+            clearInterval(intervalId); // Crucially, stop the interval when done
+          }   
+        }
+    }, 1000); // Call this function every 1000 milliseconds (1 second)
 }
 
 const resetButton = document.querySelector(".reset-btn");
@@ -117,8 +152,8 @@ document.body.addEventListener("keydown", (event) => {
 function playGame(playerMove) {
   const computerGuess = computerMove();
   let result = "";
-
-  if (playerMove === "paper") {
+  let playButton = false;
+  if (playerMove === "paper" && !playButton) {
     if (computerGuess === "rock") {
       result = "You win!";
     } else if (computerGuess === "paper") {
@@ -126,6 +161,7 @@ function playGame(playerMove) {
     } else if (computerGuess === "scissors") {
       result = "You lose!";
     }
+     
   } else if (playerMove === "rock") {
     if (computerGuess === "rock") {
       result = "Tie!";
@@ -154,6 +190,7 @@ function playGame(playerMove) {
     ).innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
     document.querySelector(".js-score").innerHTML = "";
     document.querySelector(".js-score1").innerHTML = "";
+    
     return;
   }
 
