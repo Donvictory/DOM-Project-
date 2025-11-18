@@ -86,9 +86,9 @@ img {
 .reset-div {
   max-width: 300px;
   margin-top: 30px;
-  background :transparent;
+  background :rgb(255, 168, 47);
   padding: 10px 15px;
- 
+  font-size: 13px;
   border-radius: 30px;
   color: white;
   font-weight: bold;
@@ -105,12 +105,27 @@ img {
   margin-top: 6px;
   width: 60px;
   color: black;
+  border: none;
+  background-color: green;
+}
+.no-btn{
+  background-color: red;
 }
 .con{
-   width: auto;
+  width: auto;
   height: auto;
   background :transparent;
   color: white;
   text-align: center;
   padding: 20px; 
+  box-shadow: 3px 3px 15px rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+}
+.play-btn{
+  padding: 10px 20px;
+  border: none;
+  font-weight: bold;
+  color: black;
+  display: block;
+  margin: 20px auto;
 }
